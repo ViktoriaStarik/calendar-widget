@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import './colors.dart';
 
-class Styles {
-  static TextStyle dayOfWeekTextStyle =
-      const TextStyle(fontSize: 12, height: 1.33, color: Color(0xFFB8B9BC));
-}
-
 class MonthStyles {
   static TextStyle textStyle =
       const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, height: 1.43);

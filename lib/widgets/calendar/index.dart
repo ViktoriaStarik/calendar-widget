@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './widgets/header.dart';
 import './widgets/month.dart';
 import './colors.dart';
 
@@ -79,23 +78,16 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Header(),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Container(
-              color: WidgetColors.backgroundColor,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ...List.generate(_monthCount, _getMonth),
-                ],
-              ),
-            ),
-          ),
+    return SingleChildScrollView(
+      child: Container(
+        color: WidgetColors.backgroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ...List.generate(_monthCount, _getMonth),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
