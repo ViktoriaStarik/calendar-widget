@@ -12,15 +12,16 @@ class Calendar extends StatefulWidget {
   final Function(DateTime)? onChange;
   final Function(DateTime, DateTime)? onChangePeriod;
 
-  const Calendar(
+  Calendar(
       {Key? key,
-      required this.initialDate,
+      DateTime? initialDate,
       this.onChange,
       this.onChangePeriod,
       this.mode = CalendarMode.single,
       this.availableDates = const [],
       this.unavailableDates = const []})
-      : super(key: key);
+      : initialDate = initialDate ?? DateTime.now(),
+        super(key: key);
 
   @override
   State<Calendar> createState() => _CalendarState();
