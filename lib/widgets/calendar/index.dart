@@ -32,7 +32,7 @@ class _CalendarState extends State<Calendar> {
   DateTime? activeDateStart;
   DateTime? activeDateEnd;
 
-  _onChange(DateTime date) {
+  _updateDates(DateTime date) {
     DateTime? dateStart = date;
     DateTime? dateEnd;
 
@@ -53,10 +53,15 @@ class _CalendarState extends State<Calendar> {
       activeDateStart = dateStart;
       activeDateEnd = dateEnd;
     });
-    if (widget.mode == CalendarMode.period) {
-      if (dateStart != null && dateEnd != null) {
-        widget.onChangePeriod?.call(dateStart, dateEnd);
-      }
+  }
+
+  _onChange(DateTime date) {
+    _updateDates(date);
+
+    if (widget.mode == CalendarMode.period &&
+        activeDateStart != null &&
+        activeDateEnd != null) {
+      widget.onChangePeriod?.call(activeDateStart!, activeDateEnd!);
     } else {
       widget.onChange?.call(date);
     }
