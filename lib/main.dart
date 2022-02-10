@@ -39,6 +39,7 @@ class MyHomePage extends StatelessWidget {
               onChange: (date) => print('Calendar date: $date'),
               onChangePeriod: (date1, date2) =>
                   print('Calendar period: $date1 - $date2'),
+              isPast: true,
               mode: CalendarMode.period,
               availableDates: [DateTime.parse('2022-02-22 22:00:00')],
               unavailableDates: [DateTime.parse('2022-02-20 22:00:00')],

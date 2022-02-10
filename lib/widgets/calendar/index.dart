@@ -7,6 +7,7 @@ enum CalendarMode { period, single }
 class Calendar extends StatefulWidget {
   final DateTime initialDate;
   final CalendarMode mode;
+  final bool isPast;
   final List<DateTime> availableDates;
   final List<DateTime> unavailableDates;
   final Function(DateTime)? onChange;
@@ -15,6 +16,7 @@ class Calendar extends StatefulWidget {
   Calendar(
       {Key? key,
       DateTime? initialDate,
+      this.isPast = false,
       this.onChange,
       this.onChangePeriod,
       this.mode = CalendarMode.single,
@@ -79,8 +81,12 @@ class _CalendarState extends State<Calendar> {
   }
 
   Widget _getMonth(int index) {
-    DateTime date = DateTime(widget.initialDate.year,
-        widget.initialDate.month + index, widget.initialDate.day);
+    DateTime date = DateTime(
+        widget.initialDate.year,
+        widget.isPast
+            ? widget.initialDate.month - index
+            : widget.initialDate.month + index,
+        widget.initialDate.day);
 
     return Month(
         mode: widget.mode,
@@ -89,6 +95,7 @@ class _CalendarState extends State<Calendar> {
         activeDateStart: activeDateStart,
         activeDateEnd: activeDateEnd,
         onChange: _onChange,
+        isReverse: widget.isPast,
         date: date);
   }
 

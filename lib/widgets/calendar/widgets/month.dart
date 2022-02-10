@@ -12,12 +12,14 @@ class Month extends StatelessWidget {
   final Function(DateTime) onChange;
   final DateTime? activeDateStart;
   final DateTime? activeDateEnd;
+  final bool isReverse;
 
   const Month(
       {Key? key,
       required this.date,
       required this.onChange,
       required this.mode,
+      this.isReverse = false,
       this.activeDateStart,
       this.activeDateEnd,
       this.availableDates = const [],
@@ -50,6 +52,7 @@ class Month extends StatelessWidget {
       isPeriod: mode == CalendarMode.period,
       isActive: _checkIsActive(_date),
       isInPeriod: _checkInPeriod(_date),
+      isReverse: isReverse,
       date: _date,
       availableDates: availableDates,
       unavailableDates: unavailableDates,

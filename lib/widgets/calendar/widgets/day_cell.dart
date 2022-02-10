@@ -9,6 +9,7 @@ class DayCell extends StatelessWidget {
   final DateTime date;
   final bool isPeriod;
   final bool isInPeriod;
+  final bool isReverse;
   final List<DateTime> availableDates;
   final List<DateTime> unavailableDates;
   final Function(DateTime) onChange;
@@ -20,6 +21,7 @@ class DayCell extends StatelessWidget {
       required this.onChange,
       this.isPeriod = false,
       this.isInPeriod = false,
+      this.isReverse = false,
       this.isActive = false,
       this.availableDates = const [],
       this.unavailableDates = const []})
@@ -96,7 +98,7 @@ class DayCell extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            if (isInPeriod)
+            if (isPeriod && isInPeriod)
               Positioned(
                   top: 2,
                   left: isFirst ? -4 : -8,
@@ -118,7 +120,7 @@ class DayCell extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(CalendarUtils.getFormattedDate(date),
                       style: DayStyles.getTextStyle(
-                          isBefore
+                          !isReverse && isBefore || isReverse && !isBefore
                               ? WidgetColors.disableTextColor
                               : _colorsText[type],
                           isAvailable))),
