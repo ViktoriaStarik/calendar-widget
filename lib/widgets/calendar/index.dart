@@ -33,6 +33,16 @@ class _CalendarState extends State<Calendar> {
   DateTime? activeDateStart;
   DateTime? activeDateEnd;
 
+  @override
+  void didUpdateWidget(covariant Calendar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.mode != CalendarMode.period && activeDateEnd != null) {
+      setState(() {
+        activeDateEnd = null;
+      });
+    }
+  }
+
   _updateDates(DateTime date) {
     DateTime? dateStart = date;
     DateTime? dateEnd;
